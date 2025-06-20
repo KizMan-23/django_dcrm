@@ -2,8 +2,19 @@
 
 {% block content %}
 
-<hi>
-    Register Here
-</hi>
+<div class="col-mid-6 offset-md-3">
 
+    <hi>Register Here</hi>
+    <br/>
+
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <br/>
+
+        <button type="submit" class="btn btn-secondary"> Register</button>
+    </form>
+
+</div>
 {% endblock %}
