@@ -2,14 +2,45 @@
 
 
 {% block content%}
-<div class="col-md-6 offset-md-3">
 
-    {% if user.is_authenticated %}
 
-    <h1> Hello World! </h1>
+{% if user.is_authenticated %}
 
-    {% else %}
+<h1> <strong> Records.. </strong></h1>
 
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            <th scope="col">City</th>
+            <th scope="col">State</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% if records %}
+            {% for record in records %}
+                <tr>
+                    <td><a href="{% url 'record' record.id %}"> {{ record.id }} </a></td>
+                    <td>{{ record.first_name}} {{ record.last_name }}</td>
+                    <td>{{ record.email }}</td>
+                    <td>{{ record.phone }}</td>
+                    <td>{{ record.address }}</td>
+                    <td>{{ record.city }}</td>
+                    <td>{{ record.state }}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+
+
+{% else %}
+<div class="col-md-6 offset-md-3"></div>
     <h1>LogIn</h1>
     <br/>
     <form method="POST" action="{% url 'home' %}">
