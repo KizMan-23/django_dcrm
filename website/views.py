@@ -5,6 +5,7 @@ from .forms import SignUpForm
 
 
 def home(request):
+    #Log user in
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -37,10 +38,12 @@ def register_user(request):
             #authenticate and login
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
-            user = authenticate(request, username, password)
+            user = authenticate(request, username=username, password=password)
             login(request, user)
             messages.success(request, "You have successfully created an account")
             return redirect('home')
     else:
         form = SignUpForm()
         return render(request, 'register.html', {'form': form})
+    
+    return render(request, 'register.html', {'form': form})
