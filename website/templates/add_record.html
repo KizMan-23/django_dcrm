@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+
+<div class="col-md-6 offset-md-3">
+    <h1 > <strong>Add Record</strong></h1>
+
+    <form method="POST" action="{% url 'add_record' %}">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        {% if form.errors %}
+            <p style="color: red;">Please correct the errors below:</p>
+            {{ form.errors }}
+        {% endif %}
+
+        <br/>
+        <button type="submit" class="btn btn-secondary">Add Record </button>
+
+    </form>
+
+</div>
+{% endblock %}
